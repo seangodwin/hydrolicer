@@ -1,4 +1,4 @@
-# 2_fig1.R
+# 1_fig1.R
 # Author: Sean Godwin
 # Date: 2026-05-10
 # Description: Plot louse treatments on BC salmon farms over time
@@ -96,14 +96,10 @@ col.bars <- rev(pnw_palette(name="Sunset2",
                             n=4, 
                             type="discrete"))
 
-# # Different colour option
-# col.bars <- rev(pnw_palette(name="Starfish", 
-#                         n=7, 
-#                         type="discrete"))[1:length(unique(summ$treat.type))]
-
 # Plot
 tiff(here::here("./outputs/figs/fig1.tiff"),
-     width = 8, height = 4, units = "in", res = 600, compression = "lzw")
+     width=8, height=4, units="in", 
+     pointsize=13, res=600, compression="lzw")
 par(mar=c(3,4.6,1,0), tck=-0.025, mgp=c(1,0.7,0), family="sans")
 
   bp <- barplot(as.matrix(summ.wide),
@@ -111,16 +107,16 @@ par(mar=c(3,4.6,1,0), tck=-0.025, mgp=c(1,0.7,0), family="sans")
                 col = col.bars, #border=NA,
                 ann=F, xaxt="n", yaxt="n", 
                 legend.text = rownames(summ.wide),
-                args.legend = list(x=5, y=2.08, bty="n"),
+                args.legend = list(x=5.4, y=2.08, bty="n"),
                 ylim=c(0,2), xlim = c(0.62, ncol(summ.wide) + 2.5))
   
   #  Y axis
   axis(side=2,
        at=seq(0,2,0.5),
        las=1)
-  par(mgp=c(2.5,0.6,0))
   
-  # X axis (brute force for now
+  # X axis 
+  par(mgp=c(2.5,0.6,0))
   axis(side=1, 
        at=bp, 
        labels=paste("'", 

@@ -1,4 +1,4 @@
-# 3_fig2.R
+# 2_fig2.R
 # Author: Sean Godwin
 # Date: 2026-05-10
 # Description: Map of sampling sites
