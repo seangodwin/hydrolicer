@@ -13,7 +13,7 @@ library(PNWColors)   # for colour palettes
 
 ## 1 [READ IN DATA] ------------------------------------------------------------
 # Remember to change your path
-here::i_am("code/2_fig1.R")
+here::i_am("code/1_fig1.R")
 
 # Read in data
 # Farm treatments:

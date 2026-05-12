@@ -13,12 +13,12 @@ set.seed(666)
 
 ## 1 [READ IN DATA] ------------------------------------------------------------
 # Remember to change your path
-here::i_am("code/4_fig3.R")
+here::i_am("code/3_figs_other.R")
 
 # Read in data
-data <- read.csv(here::here("./data/processed/vessel_sampling.csv"))
+data <- read.csv(here::here("./data/processed/all_vessel_sampling.csv"))
 
-# Add "effluent" into control.type to make plotting easier
+# Combine "effluent" and control.type to make plotting easier
 data$control.type[is.na(data$control.type) & 
                   data$treat.type=="hydrolicer"] <- "hydrolicer"
 data$control.type[is.na(data$control.type) & 
@@ -124,7 +124,50 @@ dev.off()
 
 
 ## 5 [TABLE 1] ----------=------------------------------------------------------
+# Change sample type just to make it easier (ugly for now)
+data$control.type <- as.character(data$control.type)
 
-# Sampling events are individual 
+data$sample.type[data$sample.type=="control"] <- 
+  data$control.type[data$sample.type=="control"]
 
-data %>% group_by(region, control.type) %>% summarise(n.collection)
+# Make some adjustments
+data$control.type[data$control.type %in% 
+                   c("hydrolicer", "freshwater")] <- "effluent"
+data$region <- factor(data$region,
+                      levels = c("Clayoquot Sound", "Broughton Archipelago"))
+
+# Make the table
+tab <- as.data.frame(
+           data %>% 
+           group_by(region, treat.type, control.type) %>% 
+           summarise(unique_ids =
+                       if (first(control.type) == "effluent") {
+                         n_distinct(treat.id, na.rm = TRUE)
+                       } else {
+                         n_distinct(control.id, na.rm = TRUE)
+                       },
+                     unique_days = n_distinct(date, na.rm = TRUE),
+                     n.sample = n(),
+                     n.positive = sum(lice.extrap > 0, na.rm = TRUE),
+                     pct.positive = round(n.positive / n.sample * 100, 0),
+                     mean.lice = as.character(round(mean(lice.extrap, 
+                                                         na.rm=T),0)),
+                     max.lice = as.character(max(lice.extrap, na.rm=T))))
+
+# Final adjustments
+tab$mean.lice[tab$mean.lice == "4"] <- "4*"
+tab$max.lice[tab$max.lice == "67"] <- "67*"
+tab$control.type[tab$control.type=="spatial"] <- "spatial control"
+tab$control.type[tab$control.type=="temporal"] <- "temporal control"
+
+
+colnames(tab) <- c("Region", "Treatment type", "Sample category",
+                   "Number of sampling events", "Number of sampling days", 
+                   "Number of samples", "Number of positive samples", 
+                   "Percent positive samples", "Mean number of lice", 
+                   "Maximum number of lice")
+
+
+## 6 [WRITE CSV] ---------------------------------------------------------------
+write.csv(tab, "./outputs/tables/table1.csv", 
+          row.names=F, quote=F)

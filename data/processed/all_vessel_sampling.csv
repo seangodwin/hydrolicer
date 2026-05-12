@@ -20,9 +20,9 @@ Clayoquot Sound,Fortune_Channel_effluent_2022-03,NA,CA9,2022-03-16,NA,Fortune Ch
 Clayoquot Sound,Fortune_Channel_effluent_2022-03,NA,CA10,2022-03-16,NA,Fortune Channel,49.23469982,-125.7502612,hydrolicer,effluent,NA,source,250,NA,NA,NA,1000,500,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
 Clayoquot Sound,Fortune_Channel_effluent_2022-03,NA,CA11,2022-03-16,NA,Fortune Channel,49.23469982,-125.7502612,hydrolicer,effluent,NA,source,250,NA,NA,NA,1000,500,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
 Clayoquot Sound,NA,Fortune_Channel_spatial_2022-03,CA12,2022-03-16,NA,Fortune Channel,49.23469982,-125.7502612,hydrolicer,control,spatial,horizontal,250,NA,NA,NA,1000,500,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
-Clayoquot Sound,Bawden_effluent_2022-03,NA,CA13,2022-03-24,NA,Bawden,49.31278132,-126.0073145,hydrolicer,effluent,spatial,source,250,NA,NA,1.75180015393346,1000,500,0,0,0,1,1,1,0,1,0,0,0,2,4,scales
-Clayoquot Sound,Bawden_effluent_2022-03,NA,CA14,2022-03-24,NA,Bawden,49.31278132,-126.0073145,hydrolicer,effluent,spatial,source,250,NA,NA,1.85733028368849,1000,500,0,0,0,0,0,1,1,2,0,0,0,2,4,NA
-Clayoquot Sound,Bawden_effluent_2022-03,NA,CA15,2022-03-24,NA,Bawden,49.31278132,-126.0073145,hydrolicer,effluent,spatial,source,250,NA,NA,1.09751334945229,1000,500,0,0,0,0,0,1,0,1,0,0,0,1,2,NA
+Clayoquot Sound,Bawden_effluent_2022-03,NA,CA13,2022-03-24,NA,Bawden,49.31278132,-126.0073145,hydrolicer,effluent,NA,source,250,NA,NA,1.75180015393346,1000,500,0,0,0,1,1,1,0,1,0,0,0,2,4,scales
+Clayoquot Sound,Bawden_effluent_2022-03,NA,CA14,2022-03-24,NA,Bawden,49.31278132,-126.0073145,hydrolicer,effluent,NA,source,250,NA,NA,1.85733028368849,1000,500,0,0,0,0,0,1,1,2,0,0,0,2,4,NA
+Clayoquot Sound,Bawden_effluent_2022-03,NA,CA15,2022-03-24,NA,Bawden,49.31278132,-126.0073145,hydrolicer,effluent,NA,source,250,NA,NA,1.09751334945229,1000,500,0,0,0,0,0,1,0,1,0,0,0,1,2,NA
 Clayoquot Sound,NA,Bawden_spatial_2022-03,CA16,2022-03-24,NA,Bawden,49.31278132,-126.0073145,hydrolicer,control,spatial,source,250,NA,NA,13.5500686605456,1000,500,0,0,0,0,0,0,0,0,0,0,0,0,0,NA
 Broughton Archipelago,NA,Swanson_spatial_2021-09,BA1,2021-09-23,NA,Swanson,50.61826119,-126.7036895,hydrolicer,control,spatial,horizontal,150,3,1.5,NA,1000,15,0,0,NA,NA,0,NA,NA,0,NA,NA,0,0,0,NA
 Broughton Archipelago,NA,Swanson_spatial_2021-09,BA2,2021-09-23,NA,Swanson,50.61826119,-126.7036895,hydrolicer,control,spatial,horizontal,150,3,1.5,NA,1000,15,0,0,NA,NA,0,NA,NA,0,NA,NA,0,0,0,NA

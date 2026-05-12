@@ -1,0 +1,8 @@
+Region,Treatment type,Sample category,Number of sampling events,Number of sampling days,Number of samples,Number of positive samples,Percent positive samples,Mean number of lice,Maximum number of lice
+Clayoquot Sound,hydrolicer,effluent,8,9,21,15,71,80,688
+Clayoquot Sound,hydrolicer,spatial control,4,4,4,0,0,0,0
+Broughton Archipelago,freshwater,effluent,3,4,20,18,90,573,1667
+Broughton Archipelago,freshwater,spatial control,2,2,5,0,0,0,0
+Broughton Archipelago,hydrolicer,effluent,4,6,33,27,82,432,1200
+Broughton Archipelago,hydrolicer,spatial control,3,5,20,0,0,0,0
+Broughton Archipelago,none,temporal control,5,9,18,1,6,4*,67*

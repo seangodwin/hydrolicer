@@ -13,7 +13,7 @@ library(data.table)  # for fread()
 
 ## 1 [READ IN DATA] ------------------------------------------------------------
 # Identify root directory
-here::i_am("code/3_fig2.R")
+here::i_am("code/2_fig2.R")
 
 
 

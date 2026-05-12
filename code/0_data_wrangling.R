@@ -80,7 +80,8 @@ cs$flow.vol <- cs.distance * pi *
 cs$date[is.na(cs$farm.name)==F & 
         cs$farm.name=="Bawden Bay"] <- as.Date("2022-03-24")
 cs$control.type[cs$farm.name == "Bawden Bay" & 
-                cs$date == "2022-03-24"] <- "spatial"
+                cs$date == "2022-03-24" & 
+                cs$sample.type == "control"] <- "spatial"
 
 # Reorder and remove columns
 cs <- cs[,c("region", "sample.id", "date", "time", "farm.name", "lat", "lon",
@@ -177,9 +178,6 @@ data$lon <- farm.locs$lon[match(data$farm.name, farm.locs$farm.name)]
 # Replace commas in comments so it doesn't mess up csv file
 data$comments <- gsub(",", ";", data$comments)
 
-
-
-
 # Add a treatment ID column
 data$treat.id[data$sample.type == "effluent"] <- 
     paste(data$farm.name, 
@@ -202,4 +200,5 @@ data <- data %>%
 
 
 ## 5 [WRITE CSV] ---------------------------------------------------------------
-write.csv(data, "./data/processed/all_vessel_sampling.csv", row.names=F, quote=F)
+write.csv(data, "./data/processed/all_vessel_sampling.csv", 
+          row.names=F, quote=F)
