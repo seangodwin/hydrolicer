@@ -40,7 +40,7 @@ palette(adjustcolor(c(rev(pnw_palette(name="Sunset2",
                     alpha.f=0.8))
 x.shift <- -0.28
 
-tiff(here::here("./outputs/figs/test.tiff"), width=8, height=4.5, units="in",
+tiff(here::here("./outputs/figs/fig3.tiff"), width=8, height=4.5, units="in",
      pointsize=14, res=600, compression="lzw")
 par(mar=c(3, 4.2, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
 
