@@ -24,21 +24,23 @@ data$control.type[is.na(data$control.type) &
                   data$treat.type=="hydrolicer"] <- "hydrolicer"
 data$control.type[is.na(data$control.type) & 
                   data$treat.type=="freshwater"] <- "freshwater"
-data$control.type <- relevel(as.factor(data$control.type), ref="hydrolicer")
+data$control.type <- factor(data$control.type, 
+                            levels=c("temporal", "spatial", 
+                                     "hydrolicer", "freshwater"))
 
 
 
 ## 2 [FIGURE 3] ----------=-----------------------------------------------------
 palette(adjustcolor(c(rev(pnw_palette(name="Sunset2", 
-                                    n=4, 
-                                    type="discrete"))[1:2],
-                      rev(pnw_palette(name="Sunset2", 
-                                  n=20, 
-                                  type="continuous"))[c(17,20)]),
+                        n=20, 
+                        type="continuous"))[c(17,20)],
+                    rev(pnw_palette(name="Sunset2", 
+                          n=4, 
+                          type="discrete"))[1:2]),
                     alpha.f=0.8))
 x.shift <- -0.28
 
-tiff(here::here("./outputs/figs/fig3.tiff"), width=8, height=4.5, units="in",
+tiff(here::here("./outputs/figs/test.tiff"), width=8, height=4.5, units="in",
      pointsize=14, res=600, compression="lzw")
 par(mar=c(3, 4.2, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
 
@@ -56,8 +58,8 @@ par(mar=c(3, 4.2, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
   # X axis
   par(mgp=c(2.5,1.6,0))
   axis(side=1, at=seq(0.5,2,0.5)+x.shift, 
-       labels=c("Hydrolicer\n", "Freshwater\nbath",
-                "Temporal\ncontrol", "Spatial\ncontrol"))
+       labels=c("Temporal\ncontrol", "Spatial\ncontrol",
+                "Hydrolicer\n", "Freshwater\nbath"))
   
   # Axes titles
   mtext("Estimated number of sea lice in sample",
