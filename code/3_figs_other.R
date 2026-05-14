@@ -8,6 +8,7 @@ rm(list=ls())
 ## 0 [PACKAGES AND INPUTS] -----------------------------------------------------
 library(here)        # for file referencing
 library(tidyverse)   # for data manipulation
+library(PNWColors)  # for colour palettes
 set.seed(666)
 
 
@@ -149,14 +150,19 @@ tab <- as.data.frame(
                      unique_days = n_distinct(date, na.rm = TRUE),
                      n.sample = n(),
                      n.positive = sum(lice.extrap > 0, na.rm = TRUE),
-                     pct.positive = round(n.positive / n.sample * 100, 0),
+                     # pct.positive = round(n.positive / n.sample * 100, 0),
                      mean.lice = as.character(round(mean(lice.extrap, 
                                                          na.rm=T),0)),
-                     max.lice = as.character(max(lice.extrap, na.rm=T))))
+                     max.lice = as.character(max(lice.extrap, na.rm=T)),
+                     mean.inf.lice = as.character(round(mean(inf.lice.extrap, 
+                                                         na.rm=T),0)),
+                     max.inf.lice = as.character(max(inf.lice.extrap, na.rm=T))))
 
-# Final adjustments
+# Final adjustments (ugly for now)
 tab$mean.lice[tab$mean.lice == "4"] <- "4*"
 tab$max.lice[tab$max.lice == "67"] <- "67*"
+tab$mean.inf.lice[tab$mean.inf.lice == "4"] <- "4*"
+tab$max.inf.lice[tab$max.inf.lice == "67"] <- "67*"
 tab$control.type[tab$control.type=="spatial"] <- "spatial control"
 tab$control.type[tab$control.type=="temporal"] <- "temporal control"
 
@@ -164,8 +170,10 @@ tab$control.type[tab$control.type=="temporal"] <- "temporal control"
 colnames(tab) <- c("Region", "Treatment type", "Sample category",
                    "Number of sampling events", "Number of sampling days", 
                    "Number of samples", "Number of positive samples", 
-                   "Percent positive samples", "Mean number of lice", 
-                   "Maximum number of lice")
+                   # "Percent positive samples", 
+                   "Mean number of lice", "Maximum number of lice", 
+                   "Mean number of infective lice", 
+                   "Maximum number of infective lice")
 
 
 ## 6 [WRITE CSV] ---------------------------------------------------------------

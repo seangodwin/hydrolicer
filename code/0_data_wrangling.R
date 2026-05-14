@@ -69,6 +69,9 @@ cs$lice <- rowSums(cs[,c("egg", "naup", "cope",
                          "chal","mot")], na.rm=T)             # all lice
 cs$lice.extrap <- round(cs$lice * cs$sample.vol / 
                         cs$subsample.vol, 0)     # estimated lice in full sample
+cs$inf.lice <- rowSums(cs[,c("naup", "mot")], na.rm=T) # just infective stages
+cs$inf.lice.extrap <- round(cs$inf.lice * cs$sample.vol / 
+                            cs$subsample.vol, 0) # infective lice in full sample
 
 # Calculation for volume of water that flowed through zoop net
 cs.flow.diff <- cs$flow.out - cs$flow.in
@@ -85,13 +88,13 @@ cs$control.type[cs$farm.name == "Bawden Bay" &
 
 # Reorder and remove columns
 cs <- cs[,c("region", "sample.id", "date", "time", "farm.name", "lat", "lon",
-            "treat.type", "sample.type", "control.type", "tow.type",
+            "treat.type", "sample.type", "control.type", 
             "mesh", "tow.duration", "tow.depth", "flow.vol", 
             "sample.vol", "subsample.vol", 
             "egg", "naup", "l.cope", "c.cope", "cope",
             "l.chal", "c.chal", "chal", 
             "l.mot", "c.mot", "mot", 
-            "lice", "lice.extrap", "comments")]
+            "lice", "lice.extrap", "inf.lice", "inf.lice.extrap", "comments")]
 
 # Convert blanks to NAs
 cs[cs==""] <- NA
@@ -114,7 +117,6 @@ ba$date <- as.Date(paste(ba$year, ba$month, ba$day, sep="-"),
 ba$sample.vol <- 1000                                  
 ba$subsample.vol <- 15
 ba$mesh <- 150
-ba$tow.type <- "horizontal"
 
 # Convert all louse NAs to zeros
 ba.louse.cols <- grep("egg|naup|cope|chal|mot", names(ba))
@@ -124,7 +126,10 @@ ba[,ba.louse.cols][is.na(ba[,ba.louse.cols])] <- 0
 ba$lice <- rowSums(ba[,c("egg", "naup", "cope",               
                          "chal","mot")], na.rm=T)      # all lice
 ba$lice.extrap <- round(ba$lice * ba$sample.vol / 
-                         ba$subsample.vol, 0)  # estimated lice in full sample
+                          ba$subsample.vol, 0)  # estimated lice in full sample
+ba$inf.lice <- rowSums(ba[,c("naup", "mot")], na.rm=T) # just infective stages
+ba$inf.lice.extrap <- round(ba$inf.lice * ba$sample.vol / 
+                              ba$subsample.vol, 0) # inf lice in full sample
 
 # Adjust some columns
 ba$sample.type <- gsub(" ", "", ba$sample.type)
@@ -160,8 +165,8 @@ data <- bind_rows(cs, ba)[,c(1:ncol(cs))]
 data[data==""] <- NA
 
 # Make type entries consistent
-data[c("treat.type", "sample.type", "control.type", "tow.type")] <-
-  lapply(data[c("treat.type", "sample.type", "control.type", "tow.type")], 
+data[c("treat.type", "sample.type", "control.type")] <-
+  lapply(data[c("treat.type", "sample.type", "control.type")], 
          tolower)
 
 # Fix site names (ugly for now)
