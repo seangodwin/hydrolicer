@@ -393,6 +393,9 @@ par(mar=c(0,0,0,0), tck=-0.03, mgp=c(3,0.5,0), family="sans")
   axis(4, at=lat.minor, labels=FALSE, tck=length.tick.sm,
        col=col.tick, lwd=lwd.axis, lwd.ticks=lwd.tick)
 
+  # Border
+  box()
+  
   # Save plotting state for later
   main.par <- par(no.readonly=TRUE)
   
@@ -517,11 +520,11 @@ par(mar=c(0,0,0,0), tck=-0.03, mgp=c(3,0.5,0), family="sans")
        ybottom = ba.real.ext[3],
        ytop = ba.real.ext[4],
        border = col.extent, lwd = lwd.extent)
-  rect(xleft = ba.real.ext[1],
-       xright = ba.real.ext[2],
-       ybottom = ba.real.ext[3],
-       ytop = ba.real.ext[4],
-       border = "black", lty=3, lwd=lwd.extent.dashed)
+  # rect(xleft = ba.real.ext[1],
+  #      xright = ba.real.ext[2],
+  #      ybottom = ba.real.ext[3],
+  #      ytop = ba.real.ext[4],
+  #      border = "black", lty=3, lwd=lwd.extent.dashed)
   
   # Broughton label
   text(x = ba.real.ext[2] - 0.10 * diff(ba.real.ext[1:2]), 
