@@ -45,6 +45,7 @@ lwd.extent.outer <- 5
 lwd.extent.inner <- 4
 lwd.axis <- 0
 lwd.tick <- 2
+lwd.pt <- 1.5
 length.tick.sm <- 0.01
 length.tick.lg <- 0.02
 gap.tick.sm <- 0.5
@@ -185,10 +186,11 @@ par(mar=c(0,0,0,0), tck=-0.03, mgp=c(3,0.5,0), family="sans")
   plot(provinces, add=TRUE, col=col.land.inset, border=NA)
   
   # Sampling sites
-  plot(sites, add=TRUE, pch=pch.pt,
-       bg=adjustcolor(col.pt, alpha.f=alpha.pt),
-       col=adjustcolor("black", alpha.f=alpha.pt),
-       cex=cex.pt)
+  xy <- crds(sites)  # only bc terra doesn't play nice with point lwds w/ plot()
+  points(xy[,1], xy[,2], pch=pch.pt,
+         bg=adjustcolor(col.pt, alpha.f=alpha.pt),
+         col=adjustcolor("black", alpha.f=alpha.pt),
+         cex=cex.pt, lwd=lwd.pt)
 
   # Region label
   usr <- par("usr")
@@ -226,10 +228,10 @@ par(mar=c(0,0,0,0), tck=-0.03, mgp=c(3,0.5,0), family="sans")
   plot(provinces, add=TRUE, col=col.land.inset, border=NA)
   
   # Sampling sites
-  plot(sites, add=TRUE, pch=pch.pt,
+  points(xy[,1], xy[,2], pch=pch.pt,
        bg=adjustcolor(col.pt, alpha.f=alpha.pt),
        col=adjustcolor("black", alpha.f=alpha.pt),
-       cex=cex.pt)
+       cex=cex.pt, lwd=lwd.pt)
   
   # Region label
   usr <- par("usr")
