@@ -4,8 +4,9 @@
 # Description: Plot louse treatments on BC salmon farms over time
 
 rm(list=ls())
+graphics.off()
 
-## 0 [LOAD PACKAGES] -----------------------------------------------------------
+## 0 [PACKAGES AND INPUTS] -----------------------------------------------------------
 library(here)        # for file referencing
 library(tidyverse)   # for data manipulation
 library(PNWColors)   # for colour palettes

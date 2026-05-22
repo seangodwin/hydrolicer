@@ -4,8 +4,9 @@
 # Description: Map of sampling sites
 
 rm(list=ls())
+graphics.off()
 
-## 0 [LOAD PACKAGES] -----------------------------------------------------------
+## 0 [PACKAGES AND INPUTS] -----------------------------------------------------------
 library(here)        # file referencing
 library(terra)       # spatial data manipulation
 library(data.table)  # for fread()

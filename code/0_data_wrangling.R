@@ -4,6 +4,7 @@
 # Description: Clean and combine sea-louse data from zoop tows around vessels
 
 rm(list=ls())
+graphics.off()
 
 ## 0 [PACKAGES AND INPUTS] -----------------------------------------------------
 library(here)        # for file referencing

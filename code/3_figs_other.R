@@ -4,6 +4,7 @@
 # Description: Louse-count data from effluent vs controls
 
 rm(list=ls())
+graphics.off()
 
 ## 0 [PACKAGES AND INPUTS] -----------------------------------------------------
 library(here)        # for file referencing
@@ -168,7 +169,7 @@ tab$max.inf.lice[tab$max.inf.lice == "67"] <- "67*"
 tab$control.type[tab$control.type=="spatial"] <- "spatial control"
 tab$control.type[tab$control.type=="temporal"] <- "temporal control"
 
-
+# Rename columns for table in paper
 colnames(tab) <- c("Region", "Treatment type", "Sample category",
                    "Number of sampling events", "Number of sampling days", 
                    "Number of samples", "Number of positive samples", 
