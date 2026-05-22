@@ -80,6 +80,10 @@ cs.distance <- cs.flow.diff * net.dims$conv[match(cs$mesh, net.dims$mesh)]
 cs$flow.vol <- cs.distance * pi * 
                (net.dims$diam[match(cs$mesh, net.dims$mesh)])^2
 
+# Louse density calculation
+cs$lice.extrap.dens <- cs$lice.extrap / cs$flow.vol
+cs$inf.lice.extrap.dens <- cs$inf.lice.extrap / cs$flow.vol
+
 # Fix a couple date entry errors
 cs$date[is.na(cs$farm.name)==F & 
         cs$farm.name=="Bawden Bay"] <- as.Date("2022-03-24")
@@ -95,7 +99,9 @@ cs <- cs[,c("region", "sample.id", "date", "time", "farm.name", "lat", "lon",
             "egg", "naup", "l.cope", "c.cope", "cope",
             "l.chal", "c.chal", "chal", 
             "l.mot", "c.mot", "mot", 
-            "lice", "lice.extrap", "inf.lice", "inf.lice.extrap", "comments")]
+            "lice", "lice.extrap", "lice.extrap.dens",
+            "inf.lice", "inf.lice.extrap", "inf.lice.extrap.dens",
+            "comments")]
 
 # Convert blanks to NAs
 cs[cs==""] <- NA

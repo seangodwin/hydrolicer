@@ -76,7 +76,7 @@ lat.minor <- seq(floor(main.ext[3])-5, ceiling(main.ext[4])+5, by=gap.tick.sm)
 
 
 # ## 3 [MAP] ---------------------------------------------------------------------
-tiff(here::here("./outputs/figs/fig2.tiff"), width=10, height=7, units="in",
+tiff(here::here("./outputs/figs/fig_2.tiff"), width=10, height=7, units="in",
      pointsize=20, res=600, compression="lzw")
 par(mar=c(0,0,0,0), tck=-0.03, mgp=c(3,0.5,0), family="sans")
 

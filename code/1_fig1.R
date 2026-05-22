@@ -98,7 +98,7 @@ col.bars <- rev(pnw_palette(name="Sunset2",
                             type="discrete"))
 
 # Plot
-tiff(here::here("./outputs/figs/fig1.tiff"),
+tiff(here::here("./outputs/figs/fig_1.tiff"),
      width=8, height=4, units="in", 
      pointsize=13, res=600, compression="lzw")
 par(mar=c(3,4.6,1,0), tck=-0.025, mgp=c(1,0.7,0), family="sans")

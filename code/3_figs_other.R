@@ -31,7 +31,7 @@ data$control.type <- factor(data$control.type,
 
 
 
-## 2 [FIGURE 3] ----------=-----------------------------------------------------
+## 2 [FIGURE 4] ----------=-----------------------------------------------------
 palette(adjustcolor(c(rev(pnw_palette(name="Sunset2", 
                         n=20, 
                         type="continuous"))[c(17,20)],
@@ -41,12 +41,11 @@ palette(adjustcolor(c(rev(pnw_palette(name="Sunset2",
                     alpha.f=0.8))
 x.shift <- -0.28
 
-tiff(here::here("./outputs/figs/fig3.tiff"), width=8, height=4.5, units="in",
+tiff(here::here("./outputs/figs/fig_4.tiff"), width=8, height=4.5, units="in",
      pointsize=14, res=600, compression="lzw")
 par(mar=c(3, 4.2, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
 
-  plot(x = jitter(as.numeric(data$control.type)/2, amount=0.15) +
-             x.shift,
+  plot(x = jitter(as.numeric(data$control.type)/2, amount=0.15) + x.shift,
        y = data$lice.extrap,
        ann=F, xaxt="n", yaxt="n",
        xlim=c(0, 1.95), ylim=c(0,1667),
@@ -69,26 +68,55 @@ par(mar=c(3, 4.2, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
 dev.off()
 
 
-## 3 [FIGURE 4] ----------=-----------------------------------------------------
+## 4 [FIGURE S1] ---------------------------------------------------------------
+set.seed(15)
+
+tiff(here::here("./outputs/figs/fig_s1.tiff"), width=5, height=4, units="in",
+     pointsize=13, res=600, compression="lzw")
+par(mar=c(3, 3.4, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
+  
+  plot(x = jitter(as.numeric(data$control.type)/2, amount=0.15) + x.shift,
+       y = data$lice.extrap.dens,
+       ann=F, xaxt="n", yaxt="n",
+       xlim=c(0.5, 1.4), ylim=c(0,5),
+       bg=data$control.type,
+       pch = 21, cex=2)
+  
+  # Y axis
+  axis(side=2, at=seq(0,5,1), las=1)
+  
+  # X axis
+  par(mgp=c(2.5,1.6,0))
+  axis(side=1, at=seq(0.5,2,0.5)+x.shift, 
+       labels=c("", "Spatial\ncontrol", "Hydrolicer\n", ""))
+  
+  # Axes titles
+  mtext(expression("Estimated density of sea lice (lice m"^-3*")"),
+        side=2, line=1.8, outer=F, cex=1.1)
+
+dev.off()
+
+
+## 3 [FIGURE S2] ----------=-----------------------------------------------------
 # Plot inputs
 col.bars <- pnw_palette(name="Starfish", n=6, type="continuous")[1:5]
 
 # Summarise data for plot
 summ.temp <- as.data.frame(data[data$sample.type == "effluent",] %>% 
-                           group_by(id = paste(mesh, treat.type, region)) %>% 
-                           summarise(egg = sum(egg)/sum(lice),
-                                     naup = sum(naup)/sum(lice),
-                                     cope = sum(cope)/sum(lice),
-                                     chal = sum(chal)/sum(lice),
-                                     mot = sum(mot)/sum(lice)))
+                             group_by(id = paste(mesh, treat.type, region)) %>% 
+                             summarise(egg = sum(egg)/sum(lice),
+                                       naup = sum(naup)/sum(lice),
+                                       cope = sum(cope)/sum(lice),
+                                       chal = sum(chal)/sum(lice),
+                                       mot = sum(mot)/sum(lice)))
 summ <- as.data.frame(t(summ.temp[-1]))
 colnames(summ) <- summ.temp$id
 
 # Plot
-tiff(here::here("./outputs/figs/fig4.tiff"), width=8, height=4, units="in",
+tiff(here::here("./outputs/figs/fig_s2.tiff"), width=8, height=4, units="in",
      pointsize=13, res=600, compression="lzw")
 par(mar=c(3.9,3.6,1,0), tck=-0.025, mgp=c(1,0.7,0), family="sans")
-
+  
   bp <- barplot(as.matrix(summ),
                 beside = FALSE,
                 col = col.bars, #border=NA,
@@ -122,9 +150,6 @@ par(mar=c(3.9,3.6,1,0), tck=-0.025, mgp=c(1,0.7,0), family="sans")
         side=2, line=2.3, outer=F, cex=1.1)
 
 dev.off()
-
-
-## 4 [FIGURE S2] ---------------------------------------------------------------
 
 
 ## 5 [TABLE 1] ----------=------------------------------------------------------
@@ -180,5 +205,5 @@ colnames(tab) <- c("Region", "Treatment type", "Sample category",
 
 
 ## 6 [WRITE CSV] ---------------------------------------------------------------
-write.csv(tab, "./outputs/tables/table1.csv", 
+write.csv(tab, "./outputs/tables/table_1.csv", 
           row.names=F, quote=F)
