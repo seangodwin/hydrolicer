@@ -199,6 +199,11 @@ par(mar=c(0,0,0,0), tck=-0.03, mgp=c(3,0.5,0), family="sans")
        labels = "Clayoquot Sound", family="sans",
        cex=cex.region, col=col.label)
   
+  # Inset label
+  text(x = usr[2] - 0.03 * diff(usr[1:2]), y = usr[4] - 0.04 * diff(usr[3:4]), 
+       labels = "†", family="sans",
+       cex=cex.ext.label, col=col.label)
+  
   # Border
   box()
   
@@ -239,6 +244,11 @@ par(mar=c(0,0,0,0), tck=-0.03, mgp=c(3,0.5,0), family="sans")
   text(x = mean(usr[1:2]), y = usr[4] - 0.06 * diff(usr[3:4]), 
        labels = "Broughton Archipelago", family="sans",
        cex=cex.region, col=col.label)
+  
+  # Inset label
+  text(x = usr[2] - 0.03 * diff(usr[1:2]), y = usr[4] - 0.04 * diff(usr[3:4]), 
+       labels = "‡", family="sans",
+       cex=cex.ext.label, col=col.label)
   
   # Border
   box()
