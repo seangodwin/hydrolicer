@@ -91,6 +91,9 @@ cs$control.type[cs$farm.name == "Bawden Bay" &
                 cs$date == "2022-03-24" & 
                 cs$sample.type == "control"] <- "spatial"
 
+# Standardise sample IDs
+cs$sample.id <- paste("CS", seq(1:nrow(cs)), sep="")
+
 # Reorder and remove columns
 cs <- cs[,c("region", "sample.id", "date", "time", "farm.name", "lat", "lon",
             "treat.type", "sample.type", "control.type", 
