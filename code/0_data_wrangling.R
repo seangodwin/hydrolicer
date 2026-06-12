@@ -70,7 +70,9 @@ cs$lice <- rowSums(cs[,c("egg", "naup", "cope",
                          "chal","mot")], na.rm=T)             # all lice
 cs$lice.extrap <- round(cs$lice * cs$sample.vol / 
                         cs$subsample.vol, 0)     # estimated lice in full sample
-cs$inf.lice <- rowSums(cs[,c("naup", "mot")], na.rm=T) # just infective stages
+cs$inf.lice <- rowSums(cs[,c("naup", "cope", "mot")], na.rm=T) # just infective
+cs$mot.lice.extrap <- round(cs$mot * cs$sample.vol / 
+                            cs$subsample.vol, 0) # infective lice in full sample
 cs$inf.lice.extrap <- round(cs$inf.lice * cs$sample.vol / 
                             cs$subsample.vol, 0) # infective lice in full sample
 
@@ -82,6 +84,7 @@ cs$flow.vol <- cs.distance * pi *
 
 # Louse density calculation
 cs$lice.extrap.dens <- cs$lice.extrap / cs$flow.vol
+cs$mot.lice.extrap.dens <- cs$mot.lice.extrap / cs$flow.vol
 cs$inf.lice.extrap.dens <- cs$inf.lice.extrap / cs$flow.vol
 
 # Fix a couple date entry errors
@@ -103,6 +106,7 @@ cs <- cs[,c("region", "sample.id", "date", "time", "farm.name", "lat", "lon",
             "l.chal", "c.chal", "chal", 
             "l.mot", "c.mot", "mot", 
             "lice", "lice.extrap", "lice.extrap.dens",
+            "mot.lice.extrap", "mot.lice.extrap.dens",
             "inf.lice", "inf.lice.extrap", "inf.lice.extrap.dens",
             "comments")]
 
@@ -137,9 +141,11 @@ ba$lice <- rowSums(ba[,c("egg", "naup", "cope",
                          "chal","mot")], na.rm=T)      # all lice
 ba$lice.extrap <- round(ba$lice * ba$sample.vol / 
                           ba$subsample.vol, 0)  # estimated lice in full sample
-ba$inf.lice <- rowSums(ba[,c("naup", "mot")], na.rm=T) # just infective stages
+ba$inf.lice <- rowSums(ba[,c("naup", "cope", "mot")], na.rm=T) # just infective
+ba$mot.lice.extrap <- round(ba$mot * ba$sample.vol / 
+                            ba$subsample.vol, 0) # infective lice in full sample
 ba$inf.lice.extrap <- round(ba$inf.lice * ba$sample.vol / 
-                              ba$subsample.vol, 0) # inf lice in full sample
+                            ba$subsample.vol, 0) # inf lice in full sample
 
 # Adjust some columns
 ba$sample.type <- gsub(" ", "", ba$sample.type)

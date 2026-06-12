@@ -97,7 +97,80 @@ par(mar=c(3, 3.4, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
 dev.off()
 
 
-## 3 [FIGURE S2] ----------=-----------------------------------------------------
+## 4 [FIGURE S2] ---------------------------------------------------------------
+
+tiff(here::here("./outputs/figs/fig_s2.tiff"), width=5, height=3.5, units="in",
+     pointsize=13, res=600, compression="lzw")
+par(mar=c(2, 4.6, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
+  
+  data$control <- factor(ifelse(data$control.type %in% 
+                                c("hydrolicer", "freshwater"),
+                         "effluent", "control"))
+  plot(x = jitter(as.numeric(data$control)/2, amount=0.15) + x.shift,
+       y = data$mot.lice.extrap,
+       ann=F, xaxt="n", yaxt="n",
+       xlim=c(0, 0.95), ylim=c(0,550),
+       bg=c(2,3)[data$control],
+       pch = 21, cex=2)
+  
+  # Y axis
+  axis(side=2, at=seq(0,500,100), las=1)
+  
+  # X axis
+  par(mgp=c(2.5,0.5,0))
+  axis(side=1, at=seq(0.5,1,0.5)+x.shift, 
+       labels=c("Control", "Effluent"))
+  
+  # Axes titles
+  mtext(expression("Estimated number of\nmotile sea lice in sample"),
+        side=2, line=2.3, outer=F, cex=1.1)
+
+dev.off()
+
+## 5 [FIGURE S3] ----------=------------------------------------------------------
+tiff(here::here("./outputs/figs/fig_s3.tiff"), width=8, height=4.5, units="in",
+     pointsize=14, res=600, compression="lzw")
+par(mar=c(3, 4.2, 0.5, 0.5), tck=-0.025, mgp=c(1,0.8,0), family="sans")
+  
+  # Assign pch values to mesh values
+  pch.vals <- c(21, 22, 24)[as.numeric(factor(data$mesh))]
+  
+  # Plot
+  plot(x = jitter(as.numeric(data$control.type)/2, amount=0.15) + x.shift,
+       y = data$lice.extrap,
+       ann = FALSE, xaxt = "n", yaxt = "n",
+       xlim = c(0, 1.95), ylim = c(0, 1667),
+       bg = data$control.type,
+       pch = pch.vals,
+       cex = 1.5)
+  
+  # Y axis
+  axis(side=2, at=seq(0,1500,500), las=1)
+  
+  # X axis
+  par(mgp=c(2.5,1.6,0))
+  axis(side=1, at=seq(0.5,2,0.5)+x.shift, 
+       labels=c("Temporal\ncontrol", "Spatial\ncontrol",
+                "Hydrolicer\n", "Freshwater\nbath"))
+  
+  # Axes titles
+  mtext("Estimated number of sea lice in sample",
+        side=2, line=3, outer=F, cex=1.1)
+  
+  # Legend
+  n.mesh <- data %>% group_by(mesh) %>% summarize(n=n())  # sample sizes
+  legend("topleft",
+         legend = paste(levels(factor(data$mesh)), " µm mesh", " (n=", 
+                        n.mesh$n, ")", sep=""),
+         pch = c(21, 22, 24),
+         pt.bg = "#475191CC",
+         pt.cex = 1.3,
+         bty = "n")
+
+dev.off()
+
+
+## 6 [FIGURE S4] ----------=-----------------------------------------------------
 # Plot inputs
 col.bars <- pnw_palette(name="Starfish", n=6, type="continuous")[1:5]
 
@@ -113,7 +186,7 @@ summ <- as.data.frame(t(summ.temp[-1]))
 colnames(summ) <- summ.temp$id
 
 # Plot
-tiff(here::here("./outputs/figs/fig_s2.tiff"), width=8, height=4, units="in",
+tiff(here::here("./outputs/figs/fig_s4.tiff"), width=8, height=4, units="in",
      pointsize=13, res=600, compression="lzw")
 par(mar=c(3.9,3.6,1,0), tck=-0.025, mgp=c(1,0.7,0), family="sans")
   
@@ -152,7 +225,7 @@ par(mar=c(3.9,3.6,1,0), tck=-0.025, mgp=c(1,0.7,0), family="sans")
 dev.off()
 
 
-## 5 [TABLE 1] ----------=------------------------------------------------------
+## 7 [TABLE 1] ----------=------------------------------------------------------
 # Change sample type just to make it easier (ugly for now)
 data$control.type <- as.character(data$control.type)
 
@@ -204,6 +277,6 @@ colnames(tab) <- c("Region", "Treatment type", "Sample category",
                    "Maximum number of infective lice")
 
 
-## 6 [WRITE CSV] ---------------------------------------------------------------
+## 8 [WRITE CSV] ---------------------------------------------------------------
 write.csv(tab, "./outputs/tables/table_1.csv", 
           row.names=F, quote=F)
